@@ -4,7 +4,10 @@
 # except the two header lines?
 # Enter the relevant Unix command(s) used below.
 
-
+cat classlist.csv | tail -130
+##I first ran cat -n classlist.csv to find that the file contains
+##132 lines of text. And then the command prints the last 130, lines
+##which excluses the header lines.
 
 
 # part (b)
@@ -13,7 +16,10 @@
 # Enter the relevant Unix command(s) used below as well as the number
 # of students in the list.
 
+cat classlist.csv | tail -130 | cat -n
 
+## This prints the file excluding the top two header lines. It also 
+## numbers the student information. There are 130 students in total.
 
 
 # part (c)
@@ -24,7 +30,9 @@
 # Enter the relevant Unix command(s) used below as well as the names
 # of the first and last students in the new list.
 
+for line in classlist.csv; for element in line; if element == 1; do sort; done
 
+## Anastasia, Weatherford would be first and Vergie Alcazar will be last.
 
 
 # part (d)
@@ -33,8 +41,11 @@
 # repeated in the class list?
 # Enter the relevant name(s) and the Unix command(s) below.
 
-
-
+cut -c "100??????" classlist.csv #This should remove all the student id numbers from the file.
+cut -d ",*" classlist.csv  # This should remove the last column, so that we are left only with first names.
+uniq -d classlist.csv   #This will then print the duplicated first names.
+Combined as a pipe:
+cat classlist.csv | cut -c "100??????" | cut -d ", *" | uniq -d
 
 # part (f) [BONUS]
 # Construct a Unix pipeline that extracts the last three digits of
